@@ -1,4 +1,5 @@
-
+#Programa hecho por Juan Coll y Valeria Solorzano
+#Modulo que se usa para cargar los datos locales
 
 from .Lector_GitHub import LectorDelRepositorio
 import sys
@@ -36,6 +37,7 @@ if ingredientes is None or hotdog_seleccionado is None:
     sys.exit(1) # Detiene todo si los datos no existen
 else:
     print("Datos (INGREDIENTES, MENU Y INVENTARIO) cargados con éxito.")
+
 
 
     

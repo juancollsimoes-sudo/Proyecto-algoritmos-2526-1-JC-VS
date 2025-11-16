@@ -1,3 +1,4 @@
+#Programa hecho por Juan Coll y Valeria Solorzano
 #Simular dia de ventas
 import random as r
 from collections import Counter # Útil para los reportes
@@ -211,3 +212,4 @@ def iniciar_programa_Simulador(ingredientes_data, menu_data, inventario_data):
     
     print("\n...volviendo al menú principal.")
     t.sleep(3)
+

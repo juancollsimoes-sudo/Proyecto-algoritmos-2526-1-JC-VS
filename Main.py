@@ -1,3 +1,4 @@
+#Programa hecho por Juan Coll y Valeria Solorzano
 import sys
 import time as t
 
@@ -80,4 +81,5 @@ def main():
             print(" Opción no válida. Intente de nuevo.")
 
 if __name__ == "__main__":
+
     main()

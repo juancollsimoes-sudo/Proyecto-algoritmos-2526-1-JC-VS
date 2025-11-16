@@ -8,7 +8,7 @@ try:
     # Esta línea ejecuta 'cargar_datos.py'
     from Source.cargar_datos import ingredientes, hotdog_seleccionado, inventario
 except ImportError as e:
-    print(f"\n{'='*50}")
+    print(f"{'='*50}")
     print(f"¡ERROR FATAL!: No se pudo encontrar el módulo 'Source.cargar_datos'.")
     print(f"Detalle: {e}")
     print("Asegúrate de estar ejecutando 'main.py' desde el directorio raíz")
@@ -38,6 +38,7 @@ except ImportError as e:
     print(f"¡ERROR FATAL!: No se pudo encontrar el módulo 'Modules.Gestor_de_menu'.")
     print(f"Detalle: {e}")
     print(f"{'='*50}")
+    t.sleep(2)
     sys.exit(1)
 
 print("Sistema de gestión importado con éxito.")
@@ -48,13 +49,13 @@ def main():
     """
     Función principal que actúa como el menú de más alto nivel.
     """
-    print("\n==================================================")
+    print("="*50)
     print(" BIENVENIDO AL SISTEMA DE GESTIÓN DE Hot Dog CCS 🌭")
-    print("====================================================")
+    print("="*50)
     t.sleep(1)
     # Bucle principal de la aplicación
     while True:
-        print("\n--- MENÚ PRINCIPAL ---")
+        print("--- MENÚ PRINCIPAL ---")
         print("1. Gestionar Ingredientes")
         print("2. Gestionar Inventario")
         print("3. Gestionar Menu")
@@ -72,7 +73,7 @@ def main():
         elif opcion_principal == '4':
             iniciar_programa_Simulador(ingredientes, hotdog_seleccionado, inventario)    
         elif opcion_principal == '5':
-            print("\nGracias por usar el sistema. ¡Adiós! ")
+            print("Gracias por usar el sistema. ¡Adiós! ")
             t.sleep(3)
             break
         else:

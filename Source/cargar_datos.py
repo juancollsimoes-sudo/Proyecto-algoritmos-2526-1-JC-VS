@@ -2,8 +2,9 @@
 
 from .Lector_GitHub import LectorDelRepositorio
 import sys
+import time as t
 
-print("Módulo 'datos.py' cargando archivos locales...")
+print("Módulo 'cargar_datos.py' cargando archivos locales...")
 
 
 lector = LectorDelRepositorio(dueño="", nombre_repo="") # No importa el dueño/repo aquí
@@ -31,6 +32,7 @@ if ingredientes is None or hotdog_seleccionado is None:
     print("No se pudieron cargar 'ingredientes.json' o 'menu.json'.")
     print("¡Asegúrate de ejecutar 'descargar_datos.py' primero!")
     print("-------------------------------------------------")
+    t.sleep(2)
     sys.exit(1) # Detiene todo si los datos no existen
 else:
     print("Datos (INGREDIENTES, MENU Y INVENTARIO) cargados con éxito.")

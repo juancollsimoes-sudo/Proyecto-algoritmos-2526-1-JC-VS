@@ -23,6 +23,6 @@ exito1 = lector.descargar_y_guardar_archivo(ingredientes_remoto, ingredientes_lo
 exito2 = lector.descargar_y_guardar_archivo(menu_remoto, menu_local)
 
 if exito1 and exito2:
-    print("\n¡Descarga completada! Los archivos .json están listos.")
+    print("¡Descarga completada! Los archivos .json están listos.")
 else:
-    print("\n¡Fallo la descarga! Revisa los errores.")
+    print("¡Fallo la descarga! Revisa los errores.")

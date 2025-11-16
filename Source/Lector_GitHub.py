@@ -22,7 +22,7 @@ class LectorDelRepositorio:
 
 
     def construir_url(self, nombre_archivo):
-        #esta funcion ayudara a construir de manera mas sencilla la URL en la proxima funcios
+        #esta funcion ayudara a construir de manera mas sencilla la URL en proximas funciones
         return f"{self.base_raw_url}/{nombre_archivo}"
 
 
@@ -31,7 +31,7 @@ class LectorDelRepositorio:
     def llamar_api_archivo(self, nombre_archivo):
         #aca se contruye el URL, con ayuda de la funcion anterior
         url = self.construir_url(nombre_archivo)
-        headers = {'User-Agent': 'MiPrograma/1.0'} #el headers es la identificacion que se le envia al sercidor para que GitHub nos acepte 
+        headers = {'User-Agent': 'MiPrograma/1.0'} #el headers es la identificacion que se le envia al servidor para que GitHub nos acepte 
         # Aca llamamos directamente a la API
         try:
             response = requests.get(url, headers=headers, timeout=10)
@@ -109,7 +109,7 @@ class LectorDelRepositorio:
             return False
 
         try: 
-            with open(nombre_archivo_local, 'w', encoding='utf-8') as f:
+            with open(nombre_archivo_local, 'w', encoding='utf-8') as f: #abre o crea un archivo en la computadora, en el modo de escritura 'w'
                 json.dump(datos, f, indent=4, ensure_ascii=False) #transforma un diccionario de python a un archivo .Json
                 print(f"'{nombre_archivo_local}' guardado con exito.")
                 return True

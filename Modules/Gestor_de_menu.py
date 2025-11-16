@@ -1,3 +1,4 @@
+#Programa hecho por Juan Coll y Valeria Solorzano
 from Source.cargar_datos import ingredientes, hotdog_seleccionado, inventario
 
 from Source.Gestion_archivos import guardar_todo
@@ -1531,4 +1532,5 @@ def iniciar_programa_GestorMenu(ingredientes_data, menu_data):
             break 
         else:
             print("Opción no válida. Intente de nuevo.")
+
 

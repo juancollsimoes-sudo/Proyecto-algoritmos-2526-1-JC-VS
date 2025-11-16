@@ -1,3 +1,4 @@
+#Programa hecho por Juan Coll y Valeria Solorzano
 #Programa descargador
 
 # Importamos la "herramienta" del archivo anterior
@@ -25,4 +26,5 @@ exito2 = lector.descargar_y_guardar_archivo(menu_remoto, menu_local)
 if exito1 and exito2:
     print("¡Descarga completada! Los archivos .json están listos.")
 else:
+
     print("¡Fallo la descarga! Revisa los errores.")

@@ -1,4 +1,4 @@
-
+#Programa hecho por Juan Coll y Valeria Solorzano
 #Módulo para guardar los datos (ingredientes, menu, inventario) en sus respectivos archivos JSON locales.
 
 
@@ -53,4 +53,5 @@ def guardar_todo(ingredientes_modificados, menu_modificado, inventario_modificad
             
     except (IOError, TypeError) as e: # Capturamos errores de escritura o tipo
         print(f"¡ERROR CRÍTICO AL GUARDAR!: {e}")
+
         return False

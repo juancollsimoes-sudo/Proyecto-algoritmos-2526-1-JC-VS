@@ -1,3 +1,4 @@
+#Programa hecho por Juan Coll y Valeria Solorzano
 import time as t
 
 
@@ -238,6 +239,7 @@ def iniciar_programa_GestorInventario(ingredientes_data, menu_data):
             break 
         else:
             print("Opción no válida. Intente de nuevo.")
+
 
 
 

@@ -1,3 +1,4 @@
+#Programa hecho por Juan Coll y Valeria Solorzano
 import time as t
 
 from Source.cargar_datos import ingredientes, hotdog_seleccionado, inventario
@@ -382,5 +383,6 @@ def iniciar_programa_GestorIngredientes(ingredientes_data, menu_data):
 
 
                 
+
 
 

@@ -7,7 +7,7 @@ import json
 import os
 
 class LectorDelRepositorio:
-   #Se crea una clase para que acceda a la Api de github
+   #se crea una clase para que acceda a la Api de github
     
     
     def __init__(self, dueño, nombre_repo, branch = "main"):
@@ -32,10 +32,10 @@ class LectorDelRepositorio:
         #aca se contruye el URL, con ayuda de la funcion anterior
         url = self.construir_url(nombre_archivo)
         headers = {'User-Agent': 'MiPrograma/1.0'} #el headers es la identificacion que se le envia al servidor para que GitHub nos acepte 
-        #Aca llamamos directamente a la API
+        #aca llamamos directamente a la API
         try:
             response = requests.get(url, headers=headers, timeout=10)
-            #Lanza un error si la peticion falló (ej. 404)
+            #lanza un error si la peticion falló (ej. 404)
             response.raise_for_status()
             return response
             
@@ -58,7 +58,7 @@ class LectorDelRepositorio:
             return None
             
         try:
-            #Apartir de aca empezamos a decodificar los datos 
+            #apartir de aca empezamos a decodificar los datos 
             datos_utilizables = response.json()
             return datos_utilizables   
         except json.JSONDecodeError: #esto solo se activa si hay un error si el contenido no es un .json valido
@@ -70,27 +70,27 @@ class LectorDelRepositorio:
 
 
     def obtener_datos(self, ingredientes_archivo, menu_archivo):
-        #Realizar las llamadas a la API
+        #realizar las llamadas a la API
         response1 = self._llamar_api_archivo(ingredientes_archivo)
         response2 = self._llamar_api_archivo(menu_archivo)
 
-        #Si alguna falló, no podemos continuar
+        #si alguna falló, no podemos continuar
         if not response1 or not response2:
             print("No se pudieron obtener uno o ambos archivos de la API.")
             return None, None
             
-        #Decodificar y parsear las respuestas
+        #decodificar y parsear las respuestas
       
         datos_utilizables_ingredientes = self._decodificar_y_parsear(response1)
         datos_utilizables_menu = self._decodificar_y_parsear(response2)
       
 
-        #Si alguno falló en el parseo, retornamos None
+        #si alguno falló en el parseo, retornamos None
         if not datos_utilizables_ingredientes or not datos_utilizables_menu:
             print("Fallo al decodificar o parsear uno o ambos archivos.")
             return None, None
             
-        #Si llegamos aquí, todo fue exitoso
+        #si llegamos aquí, todo fue exitoso
         print("Los archivos .json han sido cargados con exito")
         return datos_utilizables_ingredientes, datos_utilizables_menu
     
@@ -98,7 +98,7 @@ class LectorDelRepositorio:
 
 
     def descargar_y_guardar_archivo(self, nombre_archivo_remoto, nombre_archivo_local):
-        #Descarga y guarda los datos de repositorio a unos archivos locales.
+        #descarga y guarda los datos de repositorio a unos archivos locales.
         print(f"Descargando '{nombre_archivo_remoto}' a '{nombre_archivo_local}")
 
         response = self.llamar_api_archivo(nombre_archivo_remoto)
@@ -134,5 +134,4 @@ class LectorDelRepositorio:
         else:
             print(f"Archivo local '{nombre_archivo_local}' no encontrado.")
             return None
-
 

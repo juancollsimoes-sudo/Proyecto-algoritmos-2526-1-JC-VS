@@ -337,10 +337,10 @@ Indique la categoría:
 
 
 def iniciar_programa_GestorIngredientes(ingredientes_data, menu_data):
-    # 1. Creamos la instancia y le pasamos los datos
+    #Creamos la instancia y le pasamos los datos
     gestor = GestorIngredientes(ingredientes_data, menu_data)
         
-        # 2. Bucle del menú de gestión
+        #Bucle del menú de gestión
     while True:
         print("\n--- MENÚ DE GESTIÓN DE INGREDIENTES ---")
         print("1. Listar todos los ingredientes")
@@ -383,6 +383,7 @@ def iniciar_programa_GestorIngredientes(ingredientes_data, menu_data):
 
 
                 
+
 
 
 

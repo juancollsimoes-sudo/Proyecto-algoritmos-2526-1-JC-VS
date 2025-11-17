@@ -1,7 +1,7 @@
 #Programa hecho por Juan Coll y Valeria Solorzano
 #Simular dia de ventas
 import random as r
-from collections import Counter #Util para los reportes
+from collections import Counter # Útil para los reportes
 import time as t
 from Source.Gestion_archivos import guardar_todo
 
@@ -21,7 +21,7 @@ class SimuladorDia:
         self.hotdogs_vendidos_total = 0
         self.acompanantes_vendidos_total = 0 
         
-        #Usamos Counter para facilitar el conteo, lo que hace es contar cada uno de los objetos de una lista
+        #usamos Counter para facilitar el conteo, lo que hace es contar cada uno de los objetos de una lista
         self.conteo_hotdogs_vendidos = Counter()
         self.fallos_por_hotdog = Counter()
         self.fallos_por_ingrediente = Counter()
@@ -30,17 +30,17 @@ class SimuladorDia:
 
 
     def obtener_lista_acompanantes(self):
-        #Extrae la lista de acompañantes de ingredientes
+        #extrae la lista de acompañantes de ingredientes
         try:
             cat_acompañante = next(cat for cat in self.ingredientes_data if cat['Categoria'] == 'Acompañante') #logra separar cada acompañante individualmente
             return cat_acompañante.get('Opciones', [])
-        except StopIteration: #este except lo que hace es parar la iteracion de separar cada acompañante individualmente, ya que no encontro en ingredientes.json la categoria
+        except StopIteration: # este except lo que hace es parar la iteracion de separar cada acompañante individualmente, ya que no encontro en ingredientes.json la categoria
             print("Advertencia: No se encontró categoría 'Acompañante'.")
             return []
 
     def _obtener_ingredientes_hotdog(self, hotdog_obj):
         #ayuda a obtener los ingredientes del hotdog
-        try: #se intenta lo mismo que el anterior, se busca un hotdog en especifico buscando su pan y salchicha
+        try: # se intenta lo mismo que el anterior, se busca un hotdog en especifico buscando su pan y salchicha
             ingredientes_req = [
                 hotdog_obj['Pan'],
                 hotdog_obj['Salchicha']
@@ -73,7 +73,7 @@ class SimuladorDia:
                 #si el cliente no compro nada significa que cambio de opinion
                 print(f"El cliente {i} cambió de opinión")
                 self.clientes_cambio_opinion += 1
-                continue #pasa al siguiente cliente
+                continue # Pasa al siguiente cliente
 
             #si el cliente si quiere comprar 
             
@@ -143,7 +143,7 @@ class SimuladorDia:
                 
                 #contar acompañantes vendidos
                 for hotdog, acompanante in orden_cliente:
-                    if acompanante: #si se vendió un acompañante adicional
+                    if acompanante: # Si se vendió un acompañante adicional
                         self.acompanantes_vendidos_total += 1
 
         #reporte Final del Día 
@@ -154,7 +154,7 @@ class SimuladorDia:
         #cual fue el total de clientes
         print(f"● Clientes totales: {self.num_clientes_dia}")
         
-        # cuntos clientes cambiaron de opinión
+        #cuantos clientes cambiaron de opinión
         print(f"● Clientes que cambiaron de opinión: {self.clientes_cambio_opinion}")
         
         #cuantos clientes no pudieron comprar
@@ -204,14 +204,10 @@ class SimuladorDia:
 
 def iniciar_programa_Simulador(ingredientes_data, menu_data, inventario_data):
     
-    #crear la instancia del simulador
+    
     simulador = SimuladorDia(ingredientes_data, inventario_data, menu_data)
     
-    #ejecutar la simulación
     simulador.simular_dia()
     
     print("\n...volviendo al menú principal.")
     t.sleep(3)
-
-
-

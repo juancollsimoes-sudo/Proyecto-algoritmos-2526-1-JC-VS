@@ -68,29 +68,29 @@ class GestorMenu:
             
             print(f"\n{i+1}. {hotdog_seleccionado[i]['nombre'].upper()} {self.obtener_emoji(hotdog_seleccionado[i]['nombre'])}")
             
-            # Pan
+            #Pan
             pan_info = self.obtener_info_ingrediente("Pan", hotdog_seleccionado[i]["Pan"])
             print(f"   • Pan: {pan_info}")
             
-            # Salchicha
+            #Salchicha
             salchicha_info = self.obtener_info_ingrediente("Salchicha", hotdog_seleccionado[i]["Salchicha"])
             print(f"   • Salchicha: {salchicha_info}")
             
-            # Toppings
+            #Toppings
             toppings = hotdog_seleccionado[i].get("toppings", hotdog_seleccionado[i].get("Toppings", []))
             if toppings:
                 print(f"   • Toppings: ✅ {', '.join(toppings)}")
             else:
                 print(f"   • Toppings: 🚫 Ninguno")
             
-            # Salsas
+            #Salsas
             salsas = hotdog_seleccionado[i].get("salsas", hotdog_seleccionado[i].get("Salsas", []))
             if salsas:
                 print(f"   • Salsas: ✅ {', '.join(salsas)}")
             else:
                 print(f"   • Salsas: 🚫 Ninguna")
             
-            # Acompañante
+            #Acompañante
             acompanante = hotdog_seleccionado[i].get("Acompañante")
             if acompanante:
                 acompanante_info = self.obtener_info_ingrediente("Acompañante", acompanante)
@@ -132,22 +132,22 @@ class GestorMenu:
 
         """Muestra la verificación del estado del inventario"""
 
-        # Verificar cada ingrediente
+        #Verificar cada ingrediente
         problemas = []
         stock_bajo = []
 
-        # Verificar Pan
+        #Verificar Pan
         pan = hotdog_seleccionado["Pan"]
         stock_pan = inventario.get(pan, 0)
         pan_ok = stock_pan > 0
 
-        # Verificar Salchicha
+        #Verificar Salchicha
         salchicha = hotdog_seleccionado["Salchicha"]
         stock_salchicha = inventario.get(salchicha, 0)
         salchicha_ok = stock_salchicha > 0
 
 
-        # Verificar Toppings
+        #Verificar Toppings
         toppings = hotdog_seleccionado.get("toppings", hotdog_seleccionado.get("Toppings", []))
         toppings_estado = []
         for topping in toppings:
@@ -161,7 +161,7 @@ class GestorMenu:
             else:
                 toppings_estado.append((topping, True, stock))
     
-        # Verificar Salsas
+        #Verificar Salsas
         salsas = hotdog_seleccionado.get("salsas", hotdog_seleccionado.get("Salsas", []))
         salsas_estado = []
         for salsa in salsas:
@@ -177,7 +177,7 @@ class GestorMenu:
 
 
 
-        # Verificar Acompañante
+        #Verificar Acompañante
         acompanante = hotdog_seleccionado.get("Acompañante")
         acompanante_ok = True
         stock_acompanante = 0
@@ -187,25 +187,25 @@ class GestorMenu:
             if not acompanante_ok:
                 problemas.append(f"FALTANTE: {acompanante} (0 unidades)")
 
-        # Determinar estado general
+        #Determinar estado general
         toppings_ok = True
         for estado in toppings_estado:
-            if not estado[1]:  # Si algún topping no está OK
+            if not estado[1]:  #Si algún topping no está OK
                 toppings_ok = False
                 break
             
-        # Verificar si TODAS las salsas están OK  
+        #Verificar si TODAS las salsas están OK  
         salsas_ok = True
         for estado in salsas_estado:
             if not estado[1]:  # Si alguna salsa no está OK
                 salsas_ok = False
                 break
             
-        # Estado general
+        #Estado general
         todos_ok = (pan_ok and salchicha_ok and toppings_ok and salsas_ok and acompanante_ok)
 
 
-        # Mostrar resultado
+        #Mostrar resultado
         emoji = self.obtener_emoji(hotdog_seleccionado['nombre'])
         if todos_ok:
             print(f"INVENTARIO SUFICIENTE - {hotdog_seleccionado['nombre'].upper()} {emoji}")
@@ -215,7 +215,7 @@ class GestorMenu:
         print("=" * 60)
         print("📋 ESTADO DE INGREDIENTES:")
 
-        # Pan
+        #Pan
         
         if pan_ok:
              icono = "✅" 
@@ -223,7 +223,7 @@ class GestorMenu:
             icono = "❌"
             print(f"├─ 🥖 Pan {pan}: {icono} {stock_pan} unidad{'es' if stock_pan != 1 else ''}")
 
-        # Salchicha
+        #Salchicha
         if pan_ok:
              icono = "✅" 
         else :
@@ -232,7 +232,7 @@ class GestorMenu:
 
 
 
-         # Toppings
+         #Toppings
         if toppings_estado:
             print("├─ 🍟 Toppings:")
             i = 0
@@ -243,13 +243,13 @@ class GestorMenu:
 
                 icono = "✅" if ok else "❌"
 
-                # Determinar el prefijo (último elemento o no)
+                #Determinar el prefijo (último elemento o no)
                 if i == len(toppings_estado) - 1:
                     prefix = "│  └─"
                 else:
                     prefix = "│  ├─"
 
-                # Determinar singular o plural
+                #Determinar singular o plural
                 if stock == 1:
                     unidades = "unidad"
                 else:
@@ -273,18 +273,18 @@ class GestorMenu:
 
                 icono = "✅" if ok else "❌"
 
-                # Determinar si es el último elemento
+                #Determinar si es el último elemento
                 if i == total_salsas - 1:
                     prefix = "│  └─"
                 else:
                     prefix = "│  ├─"
 
-                # Verificar stock bajo
+                #Verificar stock bajo
                 estado_extra = ""
                 if ok and stock <= 3:
                     estado_extra = " (STOCK BAJO)"
 
-                # Determinar singular o plural
+                #Determinar singular o plural
                 if stock == 1:
                     unidades = "unidad"
                 else:
@@ -295,7 +295,7 @@ class GestorMenu:
         else:
             print("├─ 🥫 Salsas: 🚫 Ninguna")
 
-        # Acompañante
+        #Acompañante
         if acompanante:
             icono = "✅" if acompanante_ok else "❌"
 
@@ -308,7 +308,7 @@ class GestorMenu:
         else:
             print("└─ 🧅 Acompañante: 🚫 Ninguno")
 
-        # Mostrar problemas
+        #Mostrar problemas
             if problemas or stock_bajo:
                 print(f"\n🚫 PROBLEMAS IDENTIFICADOS:")
                 for problema in problemas:
@@ -316,7 +316,7 @@ class GestorMenu:
                 for bajo in stock_bajo:
                     print(f"• {bajo}")
 
-        # Estado final
+        #Estado final
             if todos_ok:
                 print(f"ESTADO: DISPONIBLE PARA VENTA")
                 print(f"Puede proceder con la venta de {hotdog_seleccionado['nombre'].upper()}")
@@ -350,13 +350,13 @@ class GestorMenu:
             opcion = input("→ ")
 
             if opcion == "1":
-                # Llamar a seleccionar_multiple para obtener nuevas salsas
+                #Llamar a seleccionar_multiple para obtener nuevas salsas
                 nuevas_salsas = self.seleccionar_multiple("Salsa")
 
                 if nuevas_salsas is None:  # Usuario canceló
                     return None
 
-                # Agregar las nuevas salsas evitando duplicados
+                #Agregar las nuevas salsas evitando duplicados
                 agregadas = 0
                 i = 0
                 while i < len(nuevas_salsas):
@@ -393,7 +393,7 @@ class GestorMenu:
         print(f"SELECCIÓN DE {categoria.upper()}")
         print(f"{'='*50}")
     
-        # Buscar la categoría en los ingredientes
+        #Buscar la categoría en los ingredientes
         categoria_data = None
         for cat in ingredientes:
             if cat["Categoria"] == categoria:
@@ -404,7 +404,7 @@ class GestorMenu:
             print(f"No se encontró la categoría: {categoria}")
             return None
         
-        # Mostrar opciones disponibles
+        #Mostrar opciones disponibles
         print(f"Opciones de {categoria}:")
         opciones = categoria_data["Opciones"]
 
@@ -413,7 +413,7 @@ class GestorMenu:
             stock = inventario.get(nombre, 0)
     
 
-            # Información adicional según la categoría
+            #Información adicional según la categoría
             info_extra = ""
             if categoria == "Pan" or categoria == "Salchicha":
                 if "tipo" in opciones[i] and "tamaño" in opciones[i]:
@@ -436,7 +436,7 @@ class GestorMenu:
             print(f"{i+1}. {nombre}{info_extra}{stock_info}")
     
         print("0. Cancelar registro")    
-        # Solicitar selección
+        #Solicitar selección
         while True:
             try:
                 seleccion = int(input(f"\nSeleccione una opción (1-{len(opciones)}): "))
@@ -448,7 +448,7 @@ class GestorMenu:
                 if 1 <= seleccion <= len(opciones):
                     ingrediente_seleccionado = opciones[seleccion-1]["nombre"]
 
-                    # Verificar stock
+                    #Verificar stock
                     stock_actual = inventario.get(ingrediente_seleccionado, 0)
                     if stock_actual == 0:
                         print(f"ADVERTENCIA: {ingrediente_seleccionado} no tiene stock disponible")
@@ -458,7 +458,7 @@ class GestorMenu:
 
                         opcion_stock = input("→ ")
                         if opcion_stock != "1":
-                            continue  # Volver a mostrar el menú
+                            continue  #Volver a mostrar el menú
                         
                     return ingrediente_seleccionado
                 else:
@@ -471,7 +471,7 @@ class GestorMenu:
     
         """Valida los tamaños del pan y la salchicha"""
     
-    # Buscar información del pan
+    #Buscar información del pan
         pan_info = None
         for categoria in ingredientes:
             if categoria["Categoria"] == "Pan":
@@ -480,7 +480,7 @@ class GestorMenu:
                         pan_info = opcion
                         break
                     
-        # Buscar información de la salchicha
+        #Buscar información de la salchicha
         salchicha_info = None
         for categoria in ingredientes:
             if categoria["Categoria"] == "Salchicha":
@@ -496,11 +496,11 @@ class GestorMenu:
         tamano_pan = pan_info.get("tamaño", 0)
         tamano_salchicha = salchicha_info.get("tamaño", 0)
 
-        # Si tienen el mismo tamaño, todo OK
+        #Si tienen el mismo tamaño, todo OK
         if tamano_pan == tamano_salchicha:
             return True
 
-        # Si son diferentes, mostrar advertencia
+        #Si son diferentes, mostrar advertencia
         print(f"ADVERTENCIA: INCONSISTENCIA DE TAMAÑOS")
         print(f"{'='*50}")
         print(f"• Pan seleccionado: {pan_nombre} ({tamano_pan} pulgadas)")
@@ -546,21 +546,21 @@ class GestorMenu:
 
         advertencias = []
 
-        # Verificar stock de pan
+        #Verificar stock de pan
         stock_pan = inventario.get(pan, 0)
         if stock_pan == 0:
             advertencias.append(f"Sin stock de pan '{pan}' (0 unidades)")
         elif stock_pan <= 3:
             advertencias.append(f"Stock bajo de pan '{pan}' (solo {stock_pan} unidades)")
 
-        # Verificar stock de salchicha
+        #Verificar stock de salchicha
         stock_salchicha = inventario.get(salchicha, 0)
         if stock_salchicha == 0:
             advertencias.append(f"Sin stock de salchicha '{salchicha}' (0 unidades)")
         elif stock_salchicha <= 3:
             advertencias.append(f"Stock bajo de salchicha '{salchicha}' (solo {stock_salchicha} unidades)")
 
-        # Verificar stock de toppings
+        #Verificar stock de toppings
         for topping in toppings_list:
             stock_topping = inventario.get(topping, 0)
             if stock_topping == 0:
@@ -568,7 +568,7 @@ class GestorMenu:
             elif stock_topping <= 2:
                 advertencias.append(f"Stock bajo de topping '{topping}' (solo {stock_topping} unidades)")
 
-        # Verificar stock de salsas
+        #Verificar stock de salsas
         for salsa in salsas:
             stock_salsa = inventario.get(salsa, 0)
             if stock_salsa == 0:
@@ -576,7 +576,7 @@ class GestorMenu:
             elif stock_salsa <= 3:
                 advertencias.append(f"Stock bajo de salsa '{salsa}' (solo {stock_salsa} unidades)")
 
-        # Verificar stock de acompañante
+        #Verificar stock de acompañante
         if acompanante:
             stock_acompanante = inventario.get(acompanante, 0)
             if stock_acompanante == 0:
@@ -594,7 +594,7 @@ class GestorMenu:
         print(f"SELECCIÓN DE {categoria.upper()} (Múltiple)")
         print(f"{'='*50}")
 
-        # Buscar la categoría
+        #Buscar la categoría
         categoria_data = None
         i = 0
         while i < len(ingredientes):
@@ -607,7 +607,7 @@ class GestorMenu:
             print(f"No se encontró la categoría: {categoria}")
             return None
 
-        # Mostrar opciones
+        #Mostrar opciones
         print(f"Opciones de {categoria} (puede elegir varios):")
         opciones = categoria_data["Opciones"]
 
@@ -616,14 +616,14 @@ class GestorMenu:
             nombre = opciones[j]["nombre"]
             stock = inventario.get(nombre, 0)
 
-            # Información adicional
+            #Información adicional
             info_extra = ""
             if categoria == "Salsa" and "base" in opciones[j]:
                 info_extra = f" (Base: {opciones[j]['base']})"
             elif categoria == "toppings" and "tipo" in opciones[j]:
                 info_extra = f" ({opciones[j]['tipo']})"
 
-            # Mostrar stock
+            #Mostrar stock
             if stock == 0:
                 stock_info = " - Stock: 0 ❌"
             else:
@@ -635,17 +635,17 @@ class GestorMenu:
         print("0. No agregar")
         print("00. Cancelar registro")
 
-        # Solicitar selección múltiple
+        #Solicitar selección múltiple
         while True:
             seleccion_str = input(f"\nIngrese números separados por coma (ej: 1,3,5): ").strip()
 
             if seleccion_str == "0":
-                return []  # Lista vacía
+                return []  #Lista vacía
 
             if seleccion_str == "00":
-                return None  # Cancelación completa
+                return None  #Cancelación completa
 
-            # Procesar múltiples selecciones
+            #Procesar múltiples selecciones
             partes = seleccion_str.split(",")
             numeros_validos = []
             k = 0
@@ -667,7 +667,7 @@ class GestorMenu:
                 print("No seleccionó ninguna opción válida")
                 continue
             
-            # Obtener ingredientes seleccionados
+            #Obtener ingredientes seleccionados
             ingredientes_seleccionados = []
             m = 0
             while m < len(numeros_validos):
@@ -696,7 +696,7 @@ class GestorMenu:
             if opcion == "1":
                 return self.seleccion_ingrediente("Acompañante")
             elif opcion == "2":
-                return ""  # Sin acompañante
+                return ""  #Sin acompañante
             elif opcion == "0":
                 print("Registro cancelado")
                 return None
@@ -711,7 +711,7 @@ class GestorMenu:
         print("MODIFICAR INGREDIENTES")
         print(f"{'='*50}")
 
-        # Guardar valores actuales
+        #Guardar valores actuales
         pan_actual = pan
         salchicha_actual = salchicha
         toppings_actual = toppings.copy() if toppings else []
@@ -743,14 +743,14 @@ class GestorMenu:
                     print(f"Salchicha cambiada a: {nueva_salchicha}")
 
             elif opcion == "3":
-                # MODIFICACIÓN ESPECÍFICA DE TOPPINGS
+                #MODIFICACIÓN ESPECÍFICA DE TOPPINGS
                 resultado_toppings = self.modificar_toppings(toppings_actual)
                 if resultado_toppings is None:
                     return None, None, None, None, None
                 toppings_actual = resultado_toppings
 
             elif opcion == "4":
-                # MODIFICACIÓN ESPECÍFICA DE SALSAS
+                #MODIFICACIÓN ESPECÍFICA DE SALSAS
                 resultado_salsas = self.modificar_salsas(salsas_actual)
                 if resultado_salsas is None:
                     return None, None, None, None, None
@@ -800,13 +800,13 @@ class GestorMenu:
             opcion = input("→ ")
             
             if opcion == "1":
-                # Llamar a seleccionar_multiple para obtener nuevos toppings
+                #Llamar a seleccionar_multiple para obtener nuevos toppings
                 nuevos_toppings = self.seleccionar_multiple("toppings")
                 
-                if nuevos_toppings is None:  # Usuario canceló
+                if nuevos_toppings is None:  #Usuario canceló
                     return None
                 
-                # Agregar los nuevos toppings evitando duplicados
+                #Agregar los nuevos toppings evitando duplicados
                 agregados = 0
                 i = 0
                 while i < len(nuevos_toppings):
@@ -845,35 +845,35 @@ class GestorMenu:
         print("RESUMEN DEL NUEVO HOT DOG")
         print(f"{'='*60}")
 
-        # Mostrar información básica
+        #Mostrar información básica
         print(f"🌭 NOMBRE: {nombre}")
         print(f"🥖 PAN: {pan} {self.obtener_detalle_ingrediente('Pan', pan)}")
         print(f"🌭 SALCHICHA: {salchicha} {self.obtener_detalle_ingrediente('Salchicha', salchicha)}")
 
-        # Mostrar toppings
+        #Mostrar toppings
         if toppings:
             print(f"🍟 TOPPINGS: {', '.join(toppings)}")
         else:
             print(f"🍟 TOPPINGS: 🚫 Ninguno")
 
-        # Mostrar salsas
+        #Mostrar salsas
         if salsas:
             print(f"🥫 SALSAS: {', '.join(salsas)}")
         else:
             print(f"🥫 SALSAS: 🚫 Ninguna")
 
-        # Mostrar acompañante
+        #Mostrar acompañante
         if acompanante:
             print(f"🧅 ACOMPAÑANTE: {acompanante} {self.obtener_detalle_ingrediente('Acompañante', acompanante)}")
         else:
             print(f"🧅 ACOMPAÑANTE: 🚫 Ninguno")
 
-        # Verificar advertencias
+        #Verificar advertencias
         advertencias = self.verificar_advertencias(pan, salchicha, toppings, salsas, acompanante)
         if advertencias:
             print(f"ADVERTENCIAS:")
             i = 0
-            while i < len(advertencias) and i < 3:  # Mostrar máximo 3
+            while i < len(advertencias) and i < 3:  #Mostrar máximo 3
                 print(f"• {advertencias[i]}")
                 i += 1
             if len(advertencias) > 3:
@@ -959,7 +959,7 @@ class GestorMenu:
         while True:
             print(f"\n📋 Toppings actuales: {len(toppings)}")
             if toppings:
-                # Mostrar toppings numerados
+                #Mostrar toppings numerados
                 i = 0
                 while i < len(toppings):
                     print(f"  {i+1}. {toppings[i]}")
@@ -977,13 +977,13 @@ class GestorMenu:
             opcion = input("→ ")
 
             if opcion == "1":
-                # Agregar nuevos toppings
+                #Agregar nuevos toppings
                 nuevos_toppings = self.seleccionar_multiple("toppings")
                 if nuevos_toppings is None:
                     return None
 
                 if nuevos_toppings:
-                    # Agregar evitando duplicados
+                    #Agregar evitando duplicados
                     agregados = 0
                     j = 0
                     while j < len(nuevos_toppings):
@@ -1001,7 +1001,7 @@ class GestorMenu:
                         
 
             elif opcion == "2":
-                # Eliminar un topping
+                #Eliminar un topping
                 if not toppings:
                     print("No hay toppings para eliminar")
                     continue
@@ -1056,7 +1056,7 @@ class GestorMenu:
         while True:
             print(f"\n📋 Salsas actuales: {len(salsas)}")
             if salsas:
-                # Mostrar salsas numeradas
+                #Mostrar salsas numeradas
                 i = 0
                 while i < len(salsas):
                     print(f"  {i+1}. {salsas[i]}")
@@ -1080,7 +1080,7 @@ class GestorMenu:
                     return None
 
                 if nuevas_salsas:
-                    # Agregar evitando duplicados
+                    #Agregar evitando duplicados
                     agregadas = 0
                     j = 0
                     while j < len(nuevas_salsas):
@@ -1097,7 +1097,7 @@ class GestorMenu:
                         print("Asegure que el topping que desea agregar sea uno que no este ya seleccionado")
 
             elif opcion == "2":
-                # Eliminar una salsa
+                #Eliminar una salsa
                 if not salsas:
                     print("No hay salsas para eliminar")
                     continue
@@ -1122,7 +1122,7 @@ class GestorMenu:
                     print("Ingrese un número válido")
 
             elif opcion == "3":
-                # Reemplazar todas las salsas
+                #Reemplazar todas las salsas
                 nuevas_salsas = self.seleccionar_multiple("Salsa")
                 if nuevas_salsas is None:
                     return None
@@ -1147,42 +1147,42 @@ class GestorMenu:
         print("\n🌭 AGREGAR NUEVO HOT DOG AL MENÚ")
         print("=" * 50)
 
-        #  Nombre
+        #Nombre
         nombre = input("Ingrese un nombre único para el nuevo hot dog: ").strip()
         if not nombre:
             print("El nombre no puede estar vacío")
             return
 
-        #  Pan
+        #Pan
         pan = self.seleccion_ingrediente("Pan")
         if not pan:
             return
 
-        #  Salchicha
+        #Salchicha
         salchicha = self.seleccion_ingrediente("Salchicha")
         if not salchicha:
             return
 
-        # Validar tamaños
+        #Validar tamaños
         if not self.validar_tamanos(pan, salchicha):
             return
 
-        # Toppings (simplificado)
+        #Toppings (simplificado)
         toppings = self.seleccionar_toppings_interactivo()
         if toppings is None:
             return
 
-        #  Salsas
+        #Salsas
         salsas = self.seleccionar_salsas_interactivo()
         if salsas is None:
             return
 
-        #  Acompañante
+        #Acompañante
         acompanante = self.seleccionar_acompanante()
         if acompanante is None:
             return
 
-        # Mostrar resumen y confirmar
+        #Mostrar resumen y confirmar
         resultado = self.mostrar_resumen_y_confirmar(nombre, pan, salchicha, toppings, salsas, acompanante)
         confirmado, pan_final, salchicha_final, toppings_final, salsas_final, acompanante_final = resultado
 
@@ -1211,32 +1211,32 @@ class GestorMenu:
             emoji = self.obtener_emoji(hotdog['nombre'])
             print(f"{i+1}. {hotdog['nombre'].upper()} {emoji}")
 
-            # Mostrar información básica
+            #Mostrar información básica
             print(f"   🥖 Pan: {hotdog['Pan']}")
             print(f"   🌭 Salchicha: {hotdog['Salchicha']}")
 
-            # Mostrar toppings
+            #Mostrar toppings
             toppings = hotdog.get('toppings', [])
             if toppings:
                 print(f"   🍟 Toppings: {len(toppings)}")
             else:
                 print(f"   🍟 Toppings: Ninguno")
 
-            # Mostrar salsas
+            #Mostrar salsas
             salsas = hotdog.get('salsas', [])
             if salsas:
                 print(f"   🥫 Salsas: {len(salsas)}")
             else:
                 print(f"   🥫 Salsas: Ninguna")
 
-            # Mostrar acompañante
+            #Mostrar acompañante
             acompanante = hotdog.get('Acompañante')
             if acompanante:
                 print(f"   🧅 Acompañante: {acompanante}")
             else:
                 print(f"   🧅 Acompañante: Ninguno")
 
-            print()  # Línea en blanco
+            print()  #Línea en blanco
             i += 1
 
     def procesar_eliminacion(self, hotdog_seleccionado):
@@ -1246,13 +1246,13 @@ class GestorMenu:
         
         nombre = hotdog_seleccionado['nombre']
 
-        # Verificar si el hot dog tiene inventario suficiente
+        #Verificar si el hot dog tiene inventario suficiente
         tiene_inventario, problemas = self.verificar_inventario_hotdog(hotdog_seleccionado)
 
         print(f"\n{'='*60}")
 
         if tiene_inventario:
-            # Hot dog con inventario - requiere confirmación
+            #Hot dog con inventario - requiere confirmación
             print(f"ELIMINAR HOT DOG CON INVENTARIO DISPONIBLE")
             print(f"{'='*60}")
             print(f"🌭 HOT DOG: {nombre.upper()} {self.obtener_emoji(nombre)}")
@@ -1292,7 +1292,7 @@ class GestorMenu:
             if len(problemas) > 5:
                 print(f"• ... y {len(problemas) - 5} más")
 
-        # Solicitar confirmación
+        #Solicitar confirmación
         self.solicitar_confirmacion_eliminacion(hotdog_seleccionado, tiene_inventario)
 
     def verificar_inventario_hotdog(self, hotdog):
@@ -1301,17 +1301,17 @@ class GestorMenu:
         
         problemas = []
 
-        # Verificar pan
+        #Verificar pan
         pan_stock = inventario.get(hotdog["Pan"], 0)
         if pan_stock == 0:
             problemas.append(f"Sin stock de pan: {hotdog['Pan']}")
 
-        # Verificar salchicha
+        #Verificar salchicha
         salchicha_stock = inventario.get(hotdog["Salchicha"], 0)
         if salchicha_stock == 0:
             problemas.append(f"Sin stock de salchicha: {hotdog['Salchicha']}")
 
-        # Verificar toppings
+        #Verificar toppings
         toppings = hotdog.get('toppings', [])
         k = 0
         while k < len(toppings):
@@ -1320,7 +1320,7 @@ class GestorMenu:
                 problemas.append(f"Sin stock de topping: {toppings[k]}")
             k += 1
 
-        # Verificar salsas
+        #Verificar salsas
         salsas = hotdog.get('salsas', [])
         m = 0
         while m < len(salsas):
@@ -1336,7 +1336,7 @@ class GestorMenu:
             if acompanante_stock == 0:
                 problemas.append(f"Sin stock de acompañante: {acompanante}")
 
-        # Si no hay problemas, tiene inventario completo
+        #Si no hay problemas, tiene inventario completo
         tiene_inventario = (len(problemas) == 0)
 
         return tiene_inventario, problemas
@@ -1388,7 +1388,7 @@ class GestorMenu:
 
         nombre = hotdog['nombre']
 
-        # Remover del menú
+        #Remover del menú
         self.menu.remove(hotdog)
 
         print(f"HOT DOG ELIMINADO EXITOSAMENTE")
@@ -1398,7 +1398,7 @@ class GestorMenu:
         print(f"• Hot dogs en menú: {len(self.menu)}")
         print(f"• El hot dog ya no estará disponible para venta")
 
-        # Mensaje contextual según el inventario
+        #Mensaje contextual según el inventario
         if tiene_inventario:
             print(f"Hot dog eliminado por solicitud del usuario.")
             print(f"   Stock suficiente estaba disponible.")
@@ -1417,19 +1417,19 @@ class GestorMenu:
         print(f"DETALLE DE INVENTARIO - {nombre.upper()}")
         print(f"{'='*60}")
 
-        # Pan
+        #Pan
         pan_stock = inventario.get(hotdog["Pan"], 0)
         print(f"🥖 PAN: {hotdog['Pan']}")
         print(f"   • Stock: {pan_stock} unidades")
         print(f"   • Estado: {'✅ SUFICIENTE' if pan_stock > 0 else '❌ FALTANTE'}")
 
-        # Salchicha
+        #Salchicha
         salchicha_stock = inventario.get(hotdog["Salchicha"], 0)
         print(f"\n🌭 SALCHICHA: {hotdog['Salchicha']}")
         print(f"   • Stock: {salchicha_stock} unidades")
         print(f"   • Estado: {'✅ SUFICIENTE' if salchicha_stock > 0 else '❌ FALTANTE'}")
 
-        # Toppings
+        #Toppings
         toppings = hotdog.get('toppings', [])
         if toppings:
             print(f"\n🍟 TOPPINGS:")
@@ -1440,7 +1440,7 @@ class GestorMenu:
                 print(f"   • {toppings[t]}: {topping_stock} unidades {estado}")
                 t += 1
 
-        # Salsas
+        #Salsas
         salsas = hotdog.get('salsas', [])
         if salsas:
             print(f"\n🥫 SALSAS:")
@@ -1451,7 +1451,7 @@ class GestorMenu:
                 print(f"   • {salsas[s]}: {salsa_stock} unidades {estado}")
                 s += 1
 
-        # Acompañante
+        #Acompañante
         acompanante = hotdog.get('Acompañante')
         if acompanante:
             acompanante_stock = inventario.get(acompanante, 0)
@@ -1466,13 +1466,13 @@ class GestorMenu:
         print("ELIMINAR HOT DOG DEL MENÚ")
         print("=" * 50)
 
-        # Verificar si hay hot dogs en el menú
+        #Verificar si hay hot dogs en el menú
         if not self.menu:
             print("No hay hot dogs en el menú")
             input("Presione Enter para continuar...")
             return
 
-        # Mostrar lista de hot dogs
+        #Mostrar lista de hot dogs
         self.mostrar_lista_hotdogs()
 
         try:
@@ -1494,10 +1494,10 @@ class GestorMenu:
             input("Presione Enter para continuar...")
 
 def iniciar_programa_GestorMenu(ingredientes_data, menu_data):
-    # Creamos esta funcion que se usara en main.py
+    #Creamos esta funcion que se usara en main.py
     gestor = GestorMenu(ingredientes_data, menu_data)
         
-        # Bucle del menú de gestión
+        #Bucle del menú de gestión
     while True:
         print("\n--- MENÚ DE GESTIÓN DEL MENÚ ---")
         print("1. Listar el menu")
@@ -1532,5 +1532,4 @@ def iniciar_programa_GestorMenu(ingredientes_data, menu_data):
             break 
         else:
             print("Opción no válida. Intente de nuevo.")
-
 

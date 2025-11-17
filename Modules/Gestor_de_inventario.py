@@ -104,11 +104,11 @@ class GestorInventario:
         """Muestra el inventario completo organizado por categorías con información detallada"""
 
         opciones_map = {
-        "1": 0,  # Pan
-        "2": 1,  # Salchicha
-        "3": 2,  # Topping
-        "4": 3,  # Salsa
-        "5": 4   # Acompañante
+        "1": 0,  #Pan
+        "2": 1,  #Salchicha
+        "3": 2,  #Topping
+        "4": 3,  #Salsa
+        "5": 4   #Acompañante
     }
 
 
@@ -239,9 +239,6 @@ def iniciar_programa_GestorInventario(ingredientes_data, menu_data):
             break 
         else:
             print("Opción no válida. Intente de nuevo.")
-
-
-
 
 
 

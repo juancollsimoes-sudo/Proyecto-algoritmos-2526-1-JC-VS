@@ -18,7 +18,7 @@ class GestorIngredientes:
         print("\n📦 LISTA COMPLETA DE INGREDIENTES")
         print("=" * 50)
 
-        #configuración para cada categoría
+        #Configuración para cada categoría
         config_categorias = {
             "Pan": {"emoji": "🥖", "tipo": "normal"},
             "Salchicha": {"emoji": "🌭", "tipo": "normal"},
@@ -56,7 +56,7 @@ class GestorIngredientes:
         - Permite navegar entre categorías interactivamente
         """
 
-    #configuración de categorías
+    #Configuración de categorías
         
         categorias = {
         "1": {"indice": 0, "nombre": "Pan 🥖", "clasificador": "tipo", "tipo": "normal"},
@@ -181,7 +181,7 @@ Indique la categoría:
             nuevo_ingrediente = {"nombre": nombre}
 
             #Campos específicos por categoría
-            if opcion in ["1", "2", "3"]:  #Pan, Salchicha, Topping
+            if opcion in ["1", "2", "3"]:  # Pan, Salchicha, Topping
                 tipo = input("Tipo del ingrediente: ").strip()
                 tamaño = input("Tamaño del ingrediente: ").strip()
                 unidad = input("Unidad del ingrediente: ").strip()
@@ -286,7 +286,7 @@ Indique la categoría:
                     ingrediente_a_eliminar = self.ingredientes[categoria_idx]["Opciones"][seleccion - 1]
                     nombre_ingrediente = ingrediente_a_eliminar['nombre']
                     
-                    #Verifica si el ingrediente esta en uso
+                    #VERIFICAR SI EL INGREDIENTE ESTÁ EN USO
                     hotdogs_afectados = self.buscar_hotdogs_con_ingrediente(categoria_nombre, nombre_ingrediente)
                     
                     if hotdogs_afectados:
@@ -340,7 +340,7 @@ def iniciar_programa_GestorIngredientes(ingredientes_data, menu_data):
     #Creamos la instancia y le pasamos los datos
     gestor = GestorIngredientes(ingredientes_data, menu_data)
         
-        #Bucle del menú de gestión
+    #Bucle del menú de gestión
     while True:
         print("\n--- MENÚ DE GESTIÓN DE INGREDIENTES ---")
         print("1. Listar todos los ingredientes")
@@ -383,8 +383,5 @@ def iniciar_programa_GestorIngredientes(ingredientes_data, menu_data):
 
 
                 
-
-
-
 
 

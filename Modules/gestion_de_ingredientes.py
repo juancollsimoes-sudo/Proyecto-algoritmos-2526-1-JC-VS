@@ -18,7 +18,7 @@ class GestorIngredientes:
         print("\n📦 LISTA COMPLETA DE INGREDIENTES")
         print("=" * 50)
 
-        # Configuración para cada categoría
+        #configuración para cada categoría
         config_categorias = {
             "Pan": {"emoji": "🥖", "tipo": "normal"},
             "Salchicha": {"emoji": "🌭", "tipo": "normal"},
@@ -56,7 +56,7 @@ class GestorIngredientes:
         - Permite navegar entre categorías interactivamente
         """
 
-    # Configuración de categorías
+    #configuración de categorías
         
         categorias = {
         "1": {"indice": 0, "nombre": "Pan 🥖", "clasificador": "tipo", "tipo": "normal"},
@@ -96,21 +96,21 @@ class GestorIngredientes:
                     tipo_actual = ingrediente[cat_config["clasificador"]]
                     
                     if tipo_actual not in tipos_vistos:
-                        # Contar ingredientes de este tipo
+                        #Contar ingredientes de este tipo
                         cont =0
                         for k in self.ingredientes[idx]["Opciones"] :
                                      if k[cat_config["clasificador"]] == tipo_actual:
                                          cont+=1
                    
-                        # Encabezado del tipo
+                        #Encabezado del tipo
             
                         print(f"\n📁 Tipo: {tipo_actual}")
                         print(f"{'-'*30}")
                         
-                        # Listar todos los ingredientes de este tipo
+                        #Listar todos los ingredientes de este tipo
                         for k in self.ingredientes[idx]["Opciones"]:
                             if k[cat_config["clasificador"]] == tipo_actual:
-                                # Formatear según el tipo de categoría
+                                #Formatear según el tipo de categoría
                                 if cat_config["tipo"] == "salsa":
                                     print(f"* {k['nombre']} (Base:{k['base']}, Color:{k['color']})")
                                 elif cat_config["tipo"] == "acompanante":
@@ -118,7 +118,7 @@ class GestorIngredientes:
                                 else:
                                     print(f"* {k['nombre']} ({k['tipo']}, {k['tamaño']} {k['unidad']})")
                         
-                        # Mostrar contador
+                        #Mostrar contador
                         print(f"\n📊 Total: {cont} producto(s) de este tipo")
                         tipos_vistos.append(tipo_actual)
                 
@@ -164,13 +164,13 @@ Indique la categoría:
             print(f"\n{emoji} AGREGAR NUEVO {nombre_categoria.upper()}")
             print("=" * 40)
 
-            # Datos comunes
+            #Datos comunes
             nombre = input("Nombre del nuevo ingrediente: ").strip()
             if not nombre:
                 print("El nombre no puede estar vacío")
                 return
 
-            # Verificar si el nombre ya existe
+            #Verificar si el nombre ya existe
             i = 0
             while i < len(self.ingredientes[idx]["Opciones"]):
                 if self.ingredientes[idx]["Opciones"][i]["nombre"].lower() == nombre.lower():
@@ -180,8 +180,8 @@ Indique la categoría:
 
             nuevo_ingrediente = {"nombre": nombre}
 
-            # Campos específicos por categoría
-            if opcion in ["1", "2", "3"]:  # Pan, Salchicha, Topping
+            #Campos específicos por categoría
+            if opcion in ["1", "2", "3"]:  #Pan, Salchicha, Topping
                 tipo = input("Tipo del ingrediente: ").strip()
                 tamaño = input("Tamaño del ingrediente: ").strip()
                 unidad = input("Unidad del ingrediente: ").strip()
@@ -190,24 +190,24 @@ Indique la categoría:
                 nuevo_ingrediente["tamaño"] = tamaño
                 nuevo_ingrediente["unidad"] = unidad
 
-            elif opcion == "4":  # Salsa
+            elif opcion == "4":  #Salsa
                 base = input("Base de la salsa: ").strip()
                 color = input("Color de la salsa: ").strip()
 
                 nuevo_ingrediente["base"] = base.capitalize()
                 nuevo_ingrediente["color"] = color
 
-            elif opcion == "5":  # Acompañante
+            elif opcion == "5":  #Acompañante
                 tipo = input("Tipo del acompañante: ").strip()
                 preparacion = input("Preparación del acompañante: ").strip()
 
                 nuevo_ingrediente["tipo"] = tipo.capitalize()
                 nuevo_ingrediente["preparación"] = preparacion
 
-            # Agregar a la lista
+            #Agregar a la lista
             self.ingredientes[idx]["Opciones"].append(nuevo_ingrediente)
 
-            # Inicializar en inventario
+            #Inicializar en inventario
             inventario[nombre] = 0
 
             print(f"{nombre_categoria} '{nombre}' registrado correctamente")
@@ -247,11 +247,11 @@ Indique la categoría:
         """Elimina un ingrediente del sistema con validación de uso en hot dogs"""
 
         opciones_map = {
-                "1": 0,  # Pan
-                "2": 1,  # Salchicha
-                "3": 2,  # Topping
-                "4": 3,  # Salsa
-                "5": 4   # Acompañante
+                "1": 0,  #Pan
+                "2": 1,  #Salchicha
+                "3": 2,  #Topping
+                "4": 3,  #Salsa
+                "5": 4   #Acompañante
             }
 
         print("""\n📋 Indique qué ingredientes desea eliminar:
@@ -286,11 +286,11 @@ Indique la categoría:
                     ingrediente_a_eliminar = self.ingredientes[categoria_idx]["Opciones"][seleccion - 1]
                     nombre_ingrediente = ingrediente_a_eliminar['nombre']
                     
-                    # VERIFICAR SI EL INGREDIENTE ESTÁ EN USO
+                    #Verifica si el ingrediente esta en uso
                     hotdogs_afectados = self.buscar_hotdogs_con_ingrediente(categoria_nombre, nombre_ingrediente)
                     
                     if hotdogs_afectados:
-                        # Mostrar hot dogs que serán eliminados
+                        #Mostrar hot dogs que serán eliminados
                         print(f"ADVERTENCIA: El ingrediente '{nombre_ingrediente}' está en uso")
                         print(f"   Hot dogs que serán eliminados:")
                         j = 0
@@ -306,10 +306,10 @@ Indique la categoría:
                         confirmacion = input("→ ")
                         
                         if confirmacion == "1":
-                            # Eliminar el ingrediente
+                            #Eliminar el ingrediente
                             ingrediente_eliminado = self.ingredientes[categoria_idx]["Opciones"].pop(seleccion - 1)
                             
-                            # Eliminar los hot dogs afectados
+                            #Eliminar los hot dogs afectados
                             k = 0
                             while k < len(hotdogs_afectados):
                                 self.menu.remove(hotdogs_afectados[k])
@@ -322,7 +322,7 @@ Indique la categoría:
                             print("Eliminación cancelada")
                             
                     else:
-                        # El ingrediente no está en uso, eliminar directamente
+                        #El ingrediente no está en uso, eliminar directamente
                         ingrediente_eliminado = self.ingredientes[categoria_idx]["Opciones"].pop(seleccion - 1)
                         print(f"✓ {ingrediente_eliminado['nombre']} eliminado correctamente")
                         
@@ -383,6 +383,7 @@ def iniciar_programa_GestorIngredientes(ingredientes_data, menu_data):
 
 
                 
+
 
 
 

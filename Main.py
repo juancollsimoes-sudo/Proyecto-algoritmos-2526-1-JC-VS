@@ -6,7 +6,7 @@ print("Iniciando el programa principal...")
 print("Intentando cargar datos desde 'Source.cargar_datos'...")
 
 try:
-    #Esta línea ejecuta 'cargar_datos.py'
+    #esta línea ejecuta 'cargar_datos.py'
     from Source.cargar_datos import ingredientes, hotdog_seleccionado, inventario
 except ImportError as e:
     print(f"{'='*50}")
@@ -17,16 +17,16 @@ except ImportError as e:
     print(f"{'='*50}")
     sys.exit(1)
 except Exception as e:
-    #Captura cualquier otro error inesperado durante la importación inicial
+    #captura cualquier otro error inesperado durante la importación inicial
     print(f"¡ERROR INESPERADO al cargar datos!: {e}")
     sys.exit(1)
 
-#Si llegamos aquí, los datos se cargaron correctamente.
+#si llegamos aquí, los datos se cargaron correctamente.
 print("Datos cargados. Importando sistema de gestión...")
 
 
 
-#Importamos la función que inicia el sub-menú
+#importamos la función que inicia el sub-menú
 try:
     from Modules.gestion_de_ingredientes import iniciar_programa_GestorIngredientes
     from Modules.Gestor_de_inventario import iniciar_programa_GestorInventario
@@ -54,7 +54,7 @@ def main():
     print(" BIENVENIDO AL SISTEMA DE GESTIÓN DE Hot Dog CCS 🌭")
     print("="*50)
     t.sleep(1)
-    #Bucle principal de la aplicación
+    #bucle principal de la aplicación
     while True:
         print("--- MENÚ PRINCIPAL ---")
         print("1. Gestionar Ingredientes")
@@ -81,6 +81,4 @@ def main():
             print(" Opción no válida. Intente de nuevo.")
 
 if __name__ == "__main__":
-
     main()
-

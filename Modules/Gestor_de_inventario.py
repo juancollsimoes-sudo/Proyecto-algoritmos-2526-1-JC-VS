@@ -20,7 +20,7 @@ class GestorInventario:
         """Inicializa el inventario con cantidades aleatorias para todos los ingredientes existentes"""
         for categoria in ingredientes:
             for opcion in categoria["Opciones"]:
-                # Asignar cantidades iniciales basadas en el tipo de ingrediente
+                #Asignar cantidades iniciales basadas en el tipo de ingrediente
                 if categoria["Categoria"] == "Pan":
                     inventario[opcion["nombre"]] = 20
                 elif categoria["Categoria"] == "Salchicha":
@@ -64,7 +64,7 @@ class GestorInventario:
                     elif nombre_categoria == "Acompañante":
                                 print(f"   🍟 {nombre}: {cantidad} unidades")
             
-            print(f"   📊 Total {nombre_categoria}: {total_categoria} unidades")
+            print(f"📊 Total {nombre_categoria}: {total_categoria} unidades")
 
             total_general += total_categoria
             categorias_contadas += 1
@@ -155,7 +155,7 @@ class GestorInventario:
         
         print("ACTUALIZAR EXISTENCIAS")
         
-        # Mostrar lista de ingredientes para referencia
+        #Mostrar lista de ingredientes para referencia
         todos_ingredientes = []
         for categoria in self.ingredientes:
             for opcion in categoria["Opciones"]:
@@ -171,7 +171,7 @@ class GestorInventario:
 
         nombre_ingrediente = input("\nNombre del ingrediente a actualizar: ").strip()
         
-        # Verificar que el ingrediente existe
+        #Verificar que el ingrediente existe
         ingrediente_encontrado = False
         for categoria in ingredientes:
             for opcion in categoria["Opciones"]:
@@ -239,6 +239,7 @@ def iniciar_programa_GestorInventario(ingredientes_data, menu_data):
             break 
         else:
             print("Opción no válida. Intente de nuevo.")
+
 
 
 

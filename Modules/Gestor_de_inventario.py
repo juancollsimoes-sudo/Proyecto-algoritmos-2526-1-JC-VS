@@ -197,9 +197,9 @@ class GestorInventario:
             print("Ingrese una cantidad válida")
 
 def iniciar_programa_GestorInventario(ingredientes_data, menu_data):
-    # 1. Creamos la instancia y le pasamos los datos
+    #Creamos la instancia y le pasamos los datos
     gestor = GestorInventario(ingredientes_data, inventario)       
-        # 2. Bucle del menú de gestión
+        #Bucle del menú de gestión
     while True:
         print("\n--- MENÚ DE GESTIÓN DE INVENTARIO ---")
         print("1. inicializar inventario")
@@ -239,6 +239,7 @@ def iniciar_programa_GestorInventario(ingredientes_data, menu_data):
             break 
         else:
             print("Opción no válida. Intente de nuevo.")
+
 
 
 

@@ -204,12 +204,13 @@ class SimuladorDia:
 
 def iniciar_programa_Simulador(ingredientes_data, menu_data, inventario_data):
     
-    # 1. Crear la instancia del simulador
+    #Crear la instancia del simulador
     simulador = SimuladorDia(ingredientes_data, inventario_data, menu_data)
     
-    # 2. Ejecutar la simulación
+    #Ejecutar la simulación
     simulador.simular_dia()
     
     print("\n...volviendo al menú principal.")
     t.sleep(3)
+
 
